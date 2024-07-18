@@ -1,6 +1,5 @@
-<x-app-layout>
-    @extends('welcome')
-
+@include('donator_layout.app')
+@extends('welcome')
     <div class="container">
         <h1>Donate: {{ $product->name }}</h1>
         <form method="POST" action="{{ route('products.donate.submit', $product) }}">
@@ -18,4 +17,3 @@
     </div>
 
 
-</x-app-layout>

@@ -45,6 +45,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::get('/donator/products/{product}/donate', [DonationController::class, 'donate'])->name('products.donate');
     Route::post('/donator/products/{product}/donate', [DonationController::class, 'store'])->name('products.donate.submit');
+
+    Route::get('/donator/donations', [DonationController::class, 'index'])->name('donator.index');
+
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
