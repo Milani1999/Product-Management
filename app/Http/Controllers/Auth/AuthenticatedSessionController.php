@@ -42,13 +42,13 @@ class AuthenticatedSessionController extends Controller
         if ($user) {
             switch ($user->role->name) {
                 case 'Admin':
-                    return redirect()->route('dashboard'); // Redirect to admin dashboard
+                    return redirect()->route('dashboard'); 
                 case 'Donator':
-                    return redirect()->route('donator.dashboard'); // Redirect to donator dashboard
+                    return redirect()->route('products.index');
                 case 'Issuer':
-                    return redirect()->route('issuer.dashboard'); // Redirect to issuer dashboard
+                    return redirect()->route('issuer.dashboard');
                 default:
-                    return redirect()->route('dashboard'); // Default redirect
+                    return redirect()->route('dashboard');
             }
         }
     }

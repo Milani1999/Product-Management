@@ -22,7 +22,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             case 'Admin':
                 return redirect()->route('dashboard');
             case 'Donator':
-                return redirect()->route('donator.dashboard');
+                return redirect()->route('products.index');
             case 'Issuer':
                 return redirect()->route('issuer.dashboard');
             default:
@@ -31,7 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');
-    Route::get('/donator/dashboard', [DashboardController::class, 'donatorDashboard'])->name('donator.dashboard');
+    // Route::get('/donator/dashboard', [DashboardController::class, 'donatorDashboard'])->name('donator.dashboard');
     Route::get('/issuer/dashboard', [DashboardController::class, 'issuerDashboard'])->name('issuer.dashboard');
     
     Route::get('/donator/products', [ProductController::class, 'index'])->name('products.index');
