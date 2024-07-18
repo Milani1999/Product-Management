@@ -1,4 +1,4 @@
-{{-- <x-app-layout> --}}
+<x-app-layout>
     @extends('welcome')
     <div class="container">
         <div class="row justify-content-center">
@@ -63,4 +63,4 @@
             </div>
         </div>
     </div>
-{{-- </x-app-layout> --}}
+</x-app-layout>

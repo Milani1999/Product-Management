@@ -22,7 +22,7 @@
                         <td>
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-info">Edit</a>
                             <button class="btn btn-danger" onclick="deleteProduct({{ $product->id }})">Delete</button>
-                            <button class="btn btn-danger" onclick="deleteProduct({{ $product->id }})">Donate now</button>
+                            <a href="{{ route('products.donate', $product) }}" class="btn btn-primary">Donate Now</a>
                         </td>
                     </tr>
                 @endforeach
