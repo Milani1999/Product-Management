@@ -48,5 +48,12 @@ class DonationController extends Controller
         return redirect()->route('products.index')
                          ->with('success', 'Donation successful.');
     }
+
+    public function index2()
+    {
+        $donations = Donation::with(['user', 'product'])->get();
+
+        return view('admin.donations', compact('donations'));
+    }
 }
 
