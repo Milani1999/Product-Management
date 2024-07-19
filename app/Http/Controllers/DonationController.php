@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Donation;
 use App\Events\DonationCreated;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class DonationController extends Controller
 {
@@ -31,26 +33,65 @@ class DonationController extends Controller
     }
 
   
-    public function store(Request $request, Product $product)
+//     public function store(Request $request, Product $product)
+// {
+//     $validatedData = $request->validate([
+//         'quantity' => 'required|numeric|min:1|max:' . $product->quantity,
+//     ]);
+
+//     $updatedQuantity = $product->quantity - $validatedData['quantity'];
+
+//     $product->update(['quantity' => $updatedQuantity]);
+
+//     $donation = Donation::create([
+//         'user_id' => Auth::id(),
+//         'product_id' => $product->id,
+//         'quantity' => $validatedData['quantity'],
+//         'remaining_quantity' => $validatedData['quantity'],
+//     ]);
+
+//     return redirect()->route('products.index')
+//                      ->with('success', 'Donation successful.');
+// }
+
+public function store(Request $request, Product $product)
 {
+    $user = Auth::user();
+    $currentMonth = Carbon::now()->month;
+    $currentYear = Carbon::now()->year;
+
     $validatedData = $request->validate([
         'quantity' => 'required|numeric|min:1|max:' . $product->quantity,
     ]);
 
-    $updatedQuantity = $product->quantity - $validatedData['quantity'];
+    $totalDonated = Donation::where('user_id', $user->id)
+        ->whereYear('created_at', $currentYear)
+        ->whereMonth('created_at', $currentMonth)
+        ->sum('quantity');
 
+    if ($totalDonated + $validatedData['quantity'] > 300) {
+        return back()->with('error', 'You have reached your donation limit for this month.');
+    }
+
+    if ($validatedData['quantity'] > $product->quantity) {
+        return back()->with('error', 'The requested quantity exceeds available stock.');
+    }
+
+    $updatedQuantity = $product->quantity - $validatedData['quantity'];
     $product->update(['quantity' => $updatedQuantity]);
 
-    $donation = Donation::create([
-        'user_id' => Auth::id(),
+    Donation::create([
+        'user_id' => $user->id,
         'product_id' => $product->id,
         'quantity' => $validatedData['quantity'],
         'remaining_quantity' => $validatedData['quantity'],
-    ]);
+]);
 
     return redirect()->route('products.index')
                      ->with('success', 'Donation successful.');
 }
+
+
 
 public function index2()
 {
