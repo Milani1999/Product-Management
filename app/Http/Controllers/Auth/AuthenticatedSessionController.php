@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
         if ($user) {
             switch ($user->role->name) {
                 case 'Admin':
-                    return redirect()->route('dashboard'); 
+                    return redirect()->route('admin.dashboard'); 
                 case 'Donator':
                     return redirect()->route('products.index');
                 case 'Issuer':

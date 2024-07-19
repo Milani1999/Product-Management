@@ -18,14 +18,14 @@
                         <th>Product Name</th>
                         <th>Description</th>
                         <th>Quantity Donated</th>
-                        <th>Date</th>
+                        <th>Donated Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($donations as $donation)
                         <tr>
                             <td>{{ $donation->product->product_name }}</td>
-                            <td>{{ $donation->product->discription }}</td>
+                            <td>{{ $donation->product->description }}</td>
                             <td>{{ $donation->quantity }}</td>
                             <td>{{ $donation->created_at->format('Y-m-d') }}</td>
                         </tr>
