@@ -5,9 +5,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\InventoryController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -32,7 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');
     // Route::get('/donator/dashboard', [DashboardController::class, 'donatorDashboard'])->name('donator.dashboard');
-    Route::get('/issuer/dashboard', [DashboardController::class, 'issuerDashboard'])->name('issuer.dashboard');
+    // Route::get('/issuer/dashboard', [DashboardController::class, 'issuerDashboard'])->name('issuer.dashboard');
     
     Route::get('/donator/products', [ProductController::class, 'index'])->name('products.index');
     Route::get('/donator/products/create', [ProductController::class, 'create'])->name('products.create');
@@ -57,5 +58,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('users', UserController::class);
 });
+
+
+
+
 
 require __DIR__.'/auth.php';

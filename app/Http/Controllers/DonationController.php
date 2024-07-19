@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Donation;
+use App\Events\DonationCreated;
 use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
@@ -31,29 +32,32 @@ class DonationController extends Controller
 
   
     public function store(Request $request, Product $product)
-    {
-        $request->validate([
-            'quantity' => 'required|numeric|min:1|max:' . $product->quantity,
-        ]);
+{
+    $validatedData = $request->validate([
+        'quantity' => 'required|numeric|min:1|max:' . $product->quantity,
+    ]);
 
-        $product->quantity -= $request->quantity;
-        $product->save();
+    $updatedQuantity = $product->quantity - $validatedData['quantity'];
 
-        Donation::create([
-            'user_id' => Auth::id(),
-            'product_id' => $product->id,
-            'quantity' => $request->quantity,
-        ]);
+    $product->update(['quantity' => $updatedQuantity]);
 
-        return redirect()->route('products.index')
-                         ->with('success', 'Donation successful.');
-    }
+    $donation = Donation::create([
+        'user_id' => Auth::id(),
+        'product_id' => $product->id,
+        'quantity' => $validatedData['quantity'],
+        'remaining_quantity' => $validatedData['quantity'],
+    ]);
 
-    public function index2()
-    {
-        $donations = Donation::with(['user', 'product'])->get();
+    // event(new DonationCreated($donation));
 
-        return view('admin.donations', compact('donations'));
-    }
+    return redirect()->route('products.index')
+                     ->with('success', 'Donation successful.');
+}
+
+public function index2()
+{
+    $donations = Donation::with(['user:id,name,email', 'product:id,product_name,description'])->get();
+    return view('admin.donations', compact('donations'));
+}
 }
 

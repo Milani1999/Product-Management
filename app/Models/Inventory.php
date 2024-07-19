@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Donation extends Model
+class Inventory extends Model
 {
+    use HasFactory;
     
     protected $fillable = [
-        'user_id','product_id','quantity','remaining_quantity',
+        'user_id', 'product_id', 'quantity',
     ];
 
     public function user()
@@ -21,4 +23,3 @@ class Donation extends Model
         return $this->belongsTo(Product::class);
     }
 }
-
