@@ -40,4 +40,4 @@
         toastr.success("{{ Session::get('message') }}")
     </script>
 @endif
-</script>
+

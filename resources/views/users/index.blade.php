@@ -36,6 +36,8 @@
         </table>
     </div>
 </x-app-layout>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
 
@@ -45,4 +47,3 @@
         toastr.success("{{ Session::get('message') }}")
     </script>
 @endif
-</script>
