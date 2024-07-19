@@ -3,23 +3,23 @@
 
 <div class="container">
     <h1>Inventory Dashboard</h1>
-    <table class="table">
-        <thead>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
             <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantity</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Remaining Quantity</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($inventory as $item)
+            @foreach ($donations as $donation)
                 <tr>
-                    <td>{{ $item->product->product_name }}</td>
-                    <td>{{ $item->product->description }}</td>
-                    <td>{{ $item->quantity }}</td>
+                    <td>{{ $donation->product->product_name }}</td>
+                    <td>{{ $donation->product->description }}</td>
+                    <td>{{ $donation->remaining_quantity }}</td>
                     <td>
-                        <a href="{{ route('issuer.issues', ['product' => $item->product->id]) }}" class="btn btn-primary">Issue</a>
+                        <a href="{{ route('issuer.issues', $donation->id) }}" class="btn btn-primary">Issue</a>
                     </td>
                 </tr>
             @endforeach

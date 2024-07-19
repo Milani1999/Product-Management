@@ -13,6 +13,12 @@
                     <x-nav-link :href="route('admin.donations')" :active="request()->routeIs('admin.donations')">
                         {{ __('Inventory') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.donation_history')" :active="request()->routeIs('admin.donation_history')">
+                        {{ __('Donation History') }}
+                    </x-nav-link>
+                    {{-- <x-nav-link :href="route('admin.donations')" :active="request()->routeIs('admin.donations')">
+                        {{ __('Issues History') }}
+                    </x-nav-link> --}}
                 </div>
             </div>
 

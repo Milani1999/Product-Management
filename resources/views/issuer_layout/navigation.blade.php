@@ -6,10 +6,10 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('issuer.dashboard')" :active="request()->routeIs('issuer.dashboard')">
-                        {{ __('Inventory') }}
+                        {{ __('Products') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('issuer.dashboard')" :active="request()->routeIs('issuer.dashboard')">
-                        {{ __('Inventory') }}
+                    <x-nav-link :href="route('issuer.issued-products')" :active="request()->routeIs('issuer.issued-products')">
+                        {{ __('Issues') }}
                     </x-nav-link>
                 </div>
             </div>

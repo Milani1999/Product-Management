@@ -59,5 +59,11 @@ public function index2()
     $donations = Donation::with(['user:id,name,email', 'product:id,product_name,description'])->get();
     return view('admin.donations', compact('donations'));
 }
+
+public function index3()
+{
+    $donations = Donation::with(['user:id,name,email', 'product:id,product_name,description'])->get();
+    return view('admin.donation_history', compact('donations'));
+}
 }
 

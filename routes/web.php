@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\IssueController;
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -53,7 +55,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/donations', [DonationController::class, 'index2'])->name('admin.donations');
+    Route::get('/admin/donation_history', [DonationController::class, 'index3'])->name('admin.donation_history');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/issuer/inventory', [IssueController::class, 'index'])->name('issuer.dashboard');
+    Route::get('/issuer/inventory/{donation}/issue', [IssueController::class, 'issueForm'])->name('issuer.issues');
+    Route::post('/inventory/{donation}/issue', [IssueController::class, 'issue'])->name('issuer.issue.submit');
+    Route::get('/issued-products', [IssueController::class, 'showIssuedProducts'])->name('issuer.issued-products');
+});
+
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('users', UserController::class);
