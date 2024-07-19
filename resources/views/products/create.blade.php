@@ -1,6 +1,6 @@
 @include('donator_layout.app')
 @extends('welcome')
-<div class="container">
+<div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -54,7 +54,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Save Product</button>
+                        <button type="submit" class="btn btn-primary mt-3">Save Product</button>
                     </form>
                 </div>
             </div>

@@ -1,12 +1,12 @@
 <x-app-layout>
     @extends('welcome')
-    <div class="container">
+    <div class="container mt-3">
         <h2>Users</h2>
         <div class="mb-3">
             <a href="{{ route('users.create') }}" class="btn btn-success">Add New User</a>
         </div>
-        <table class="table">
-            <thead>
+        <table class="table mt-3">
+            <thead class="table-primary">
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
@@ -36,3 +36,13 @@
         </table>
     </div>
 </x-app-layout>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+
+
+@if (Session::has('message'))
+    <script>
+        toastr.success("{{ Session::get('message') }}")
+    </script>
+@endif
+</script>

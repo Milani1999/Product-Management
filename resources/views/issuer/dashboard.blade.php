@@ -1,10 +1,10 @@
 @include('issuer_layout.app')
 @extends('welcome')
 
-<div class="container">
+<div class="container mt-3">
     <h1>Inventory Dashboard</h1>
-    <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
+    <table class="table mt-3">
+        <thead class="table-primary">
             <tr>
                 <th>Product Name</th>
                 <th>Product Description</th>

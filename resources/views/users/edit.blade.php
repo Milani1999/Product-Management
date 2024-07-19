@@ -1,8 +1,8 @@
 <x-app-layout>
     @extends('welcome')
-    <div class="container">
+    <div class="container mt-3">
         <h2>Edit User</h2>
-        <form action="{{ route('users.update', $user->id) }}" method="POST">
+        <form action="{{ route('users.update', $user->id) }}" class="mt-3" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">

@@ -1,11 +1,12 @@
 @include('donator_layout.app')
 @extends('welcome')
-<div class="container">
+<div class="container mt-3">
+    <h1>Products</h1>
     <div class="mb-3">
         <a href="{{ route('products.create') }}" class="btn btn-success">Add New Product</a>
     </div>
-    <table class="table">
-        <thead>
+    <table class="table mt-3">
+        <thead class="table-primary">
             <tr>
                 <th>Name</th>
                 <th>Description</th>
@@ -31,28 +32,12 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    function deleteProduct(productId) {
-        if (confirm('Are you sure you want to delete this product?')) {
-            console.log('Attempting to delete product with ID:', productId);
-            $.ajax({
-                url: '/products/' + productId,
-                type: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    console.log('Server response:', response);
-                    $('#product_' + productId).remove();
-                    alert('Product deleted successfully.');
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                    console.error('Status:', status);
-                    console.error('XHR:', xhr);
-                    alert('Failed to delete product.');
-                }
-            });
-        }
-    }
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+
+
+@if (Session::has('message'))
+    <script>
+        toastr.success("{{ Session::get('message') }}")
+    </script>
+@endif
 </script>

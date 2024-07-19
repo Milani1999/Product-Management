@@ -40,7 +40,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('products.index')->with('message', 'Product created successfully.')->with('alert-type', 'success');
     }
 
     public function show(Product $product)
@@ -69,7 +69,7 @@ class ProductController extends Controller
 
         $product->save();
     
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('products.index')->with('message', 'Product updated successfully.');
     }
     
 
@@ -77,7 +77,7 @@ class ProductController extends Controller
 {
     $product->delete();
 
-    return response()->json(['message' => 'Product deleted successfully.']);
+    return redirect()->route('products.index')->with('message', 'Product deleted successfully.')->with('alert-type', 'success');
 }
 
 }
