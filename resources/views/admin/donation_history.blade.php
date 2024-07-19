@@ -17,7 +17,7 @@
                                     <th>User Email</th>
                                     <th>Product Name</th>
                                     <th>Product Description</th>
-                                    <th>DonatedQuantity</th>
+                                    <th>Donated Quantity</th>
                                     <th>Donated Date</th>
                                 </tr>
                             </thead>
@@ -29,7 +29,7 @@
                                         <td>{{ $donation->product->product_name }}</td>
                                         <td>{{ $donation->product->description }}</td>
                                         <td>{{ $donation->quantity }}</td>
-                                        <td>{{ $donation->created_at }}</td>
+                                        <td>{{ $donation->created_at->format('Y-m-d') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

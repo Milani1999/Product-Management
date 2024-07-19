@@ -48,8 +48,6 @@ class DonationController extends Controller
         'remaining_quantity' => $validatedData['quantity'],
     ]);
 
-    // event(new DonationCreated($donation));
-
     return redirect()->route('products.index')
                      ->with('success', 'Donation successful.');
 }

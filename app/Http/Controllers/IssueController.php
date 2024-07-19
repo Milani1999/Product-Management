@@ -11,7 +11,6 @@ class IssueController extends Controller
 {
     public function index()
     {
-        // Fetch donations along with related product and user data
         $donations = Donation::with(['product', 'user'])->get();
 
         return view('issuer.dashboard', compact('donations'));
@@ -53,6 +52,12 @@ class IssueController extends Controller
                        ->get();
 
         return view('issuer.issued-products', compact('issues'));
+    }
+
+    public function showAllHistory()
+    {
+    $issues = Issue::with(['user:id,name,email', 'product:id,product_name,description'])->get();
+    return view('admin.issue_history', compact('issues'));
     }
 
 }

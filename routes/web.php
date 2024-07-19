@@ -63,6 +63,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/issuer/inventory/{donation}/issue', [IssueController::class, 'issueForm'])->name('issuer.issues');
     Route::post('/inventory/{donation}/issue', [IssueController::class, 'issue'])->name('issuer.issue.submit');
     Route::get('/issued-products', [IssueController::class, 'showIssuedProducts'])->name('issuer.issued-products');
+    Route::get('/admin/issues_history', [IssueController::class, 'showAllHistory'])->name('admin.issue_history');
+
 });
 
 

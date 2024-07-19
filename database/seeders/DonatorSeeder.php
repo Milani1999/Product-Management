@@ -16,7 +16,7 @@ class DonatorSeeder extends Seeder
     public function run()
     {
         User::factory()->create([
-            'name' => 'Donator User',
+            'name' => 'Donator',
             'email' => 'donator@example.com',
             'role_id' => 2,
             'password' => Hash::make('password')

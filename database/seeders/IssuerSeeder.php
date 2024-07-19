@@ -16,7 +16,7 @@ class IssuerSeeder extends Seeder
     public function run()
     {
         User::factory()->create([
-            'name' => 'Issuer User',
+            'name' => 'Issuer',
             'email' => 'issuer@example.com',
             'role_id' => 3,
             'password' => Hash::make('password')

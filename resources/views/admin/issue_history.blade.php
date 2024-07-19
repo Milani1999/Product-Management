@@ -13,23 +13,23 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    {{-- <th>User Name</th>
-                                    <th>User Email</th> --}}
-                                    <th>Product ID</th>
+                                    <th>User Name</th>
+                                    <th>User Email</th>
                                     <th>Product Name</th>
                                     <th>Product Description</th>
-                                    <th>Remaining Quantity</th>
+                                    <th>Issued Quantity</th>
+                                    <th>Issued Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($donations as $donation)
+                                @foreach ($issues as $issue)
                                     <tr>
-                                        {{-- <td>{{ $donation->user->name }}</td>
-                                        <td>{{ $donation->user->email }}</td> --}}
-                                        <td>{{ $donation->product->id }}</td>
-                                        <td>{{ $donation->product->product_name }}</td>
-                                        <td>{{ $donation->product->description }}</td>
-                                        <td>{{ $donation->remaining_quantity }}</td>
+                                        <td>{{ $issue->user->name }}</td>
+                                        <td>{{ $issue->user->email }}</td>
+                                        <td>{{ $issue->product->product_name }}</td>
+                                        <td>{{ $issue->product->description }}</td>
+                                        <td>{{ $issue->quantity }}</td>
+                                        <td>{{ $issue->created_at->format('Y-m-d') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
